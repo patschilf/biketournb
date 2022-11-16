@@ -8,7 +8,25 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        yellow: "#ffc900",
+      },
+      fontSize: {
+        base: "1rem",
+        lg: "1.5rem",
+        xl: "2rem",
+        "2xl": "3rem",
+        "3xl": "4rem",
+        "4xl": "5rem",
+        "5xl": "6rem",
+        "6xl": "7rem",
+      },
+    },
+    aspectRatio: {
+      "4/3": "4/3",
+      "3/1": "3/1",
+    },
   },
   plugins: [],
 }
