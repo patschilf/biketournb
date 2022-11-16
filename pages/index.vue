@@ -34,9 +34,9 @@
         Recently added
       </h2>
       <div class="mb-40 grid grid-cols-3 gap-6">
-        <Placeholder class="aspect-4/3" :label="'Route 1'" />
-        <Placeholder class="aspect-4/3" :label="'Route 2'" />
-        <Placeholder class="aspect-4/3" :label="'Route 3'" />
+        <Teaser class="aspect-4/3" :title="'Route 1'" :location="'Fredericton'" :distance="'45km'" :duration="'2h 30min'" :elevation="'110m'"/>
+        <Teaser class="aspect-4/3" :title="'Route 2'" :location="'Saint John'" :distance="'52km'" :duration="'3h'" :elevation="'256m'"/>
+        <Teaser class="aspect-4/3" :title="'Route 3'" :location="'Moncton'" :distance="'23km'" :duration="'1h 30min'" :elevation="'76m'"/>
       </div>
     </section>
     <section class="container mx-auto px-4">
