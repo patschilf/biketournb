@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       colors: {
         yellow: "#ffc900",
+        red: "#da1500",
       },
       fontSize: {
         base: "1rem",
@@ -25,6 +26,8 @@ module.exports = {
     },
     aspectRatio: {
       "4/3": "4/3",
+      "3/2": "3/2",
+      "2/1": "2/1",
       "3/1": "3/1",
     },
   },
