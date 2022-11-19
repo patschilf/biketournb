@@ -4,12 +4,12 @@
       <div class="bg-yellow p-4">
         <div class="container mx-auto flex flex-row justify-between text-lg">
           <div>
-            <img src="/img/btnb_logo.png" alt="BikeTourNB Logo" />
+            <NuxtLink to="/"><img src="/img/btnb_logo.png" alt="BikeTourNB Logo" /></NuxtLink>
           </div>
           <nav class="flex items-center space-x-6">
-            <a href="#">Routes</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <NuxtLink to="/routes">Routes</NuxtLink>
+            <NuxtLink to="/about">About</NuxtLink>
+            <NuxtLink to="/contact">Contact</NuxtLink>
           </nav>
         </div>
       </div>
@@ -21,9 +21,9 @@
       <div class="container mx-auto flex flex-row">
         <img class="mr-6 h-8" src="/img/btnb_logo_bw.png" alt="BikeTourNB Logo" />
         <nav class="flex items-center space-x-6">
-          <a href="#">Copyright</a>
-          <a href="#">Disclaimer</a>
-          <a href="#">Contact</a>
+          <NuxtLink to="/copyright">Copyright</NuxtLink>
+          <NuxtLink to="/disclaimer">Disclaimer</NuxtLink>
+          <NuxtLink to="/contact">Contact</NuxtLink>
         </nav>
       </div>
     </footer>
