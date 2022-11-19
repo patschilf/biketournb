@@ -1,5 +1,5 @@
 <template>
-  <section class="container mx-auto px-4">
+  <section class="container mx-auto my-40 px-4">
     <h2
       class="pb-8 text-2xl font-bold uppercase underline decoration-yellow decoration-8 underline-offset-8">
       {{ title }}

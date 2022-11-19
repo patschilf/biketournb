@@ -10,4 +10,9 @@
   #__nuxt {
     height: 100%;
   }
+
+  p {
+    margin-top: 3rem; /* 48px */
+    margin-bottom: 3rem; /* 48px */
+  }
 }
