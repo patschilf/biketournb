@@ -13,22 +13,14 @@
       </div>
     </div>
   </div>
-  <section class="container mx-auto px-4">
-    <h2
-      class="pb-8 text-2xl font-bold uppercase underline decoration-yellow decoration-8 underline-offset-8">
-      Recently added
-    </h2>
+  <PageSection :title="'Recently added'">
     <div class="mb-40 grid grid-cols-3 gap-6">
       <Teaser v-for="route in routes" :key="route.id" class="aspect-4/3" :route="route" />
     </div>
-  </section>
-  <section class="container mx-auto px-4">
-    <h2
-      class="pb-8 text-2xl font-bold uppercase underline decoration-yellow decoration-8 underline-offset-8">
-      Stay tuned
-    </h2>
+  </PageSection>
+  <PageSection :title="'Stay tuned'">
     <Placeholder class="w-full mb-40 aspect-3/1" :label="'Newsletter Signup Form'" />
-  </section>
+  </PageSection>
   <section class="grid grid-cols-6 divide-x">
     <Placeholder class="aspect-4/3" :label="'Image 1'" />
     <Placeholder class="aspect-4/3" :label="'Image 2'" />
