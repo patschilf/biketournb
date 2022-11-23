@@ -1,13 +1,15 @@
 <template>
-  <header>
-    <h1 class="font-bold uppercase text-white text-center text-3xl bg-red py-12">{{ routeData.title }}</h1>
-  </header>
-  <PageSection :title="'The Route'" class="mb-40 mt-40">
-    <Placeholder :label="'Map'" class="w-full aspect-4/3" />
-  </PageSection>
+  <ContentDoc v-slot="{ doc: route }">
+    <PageHeader :title="route.title" />
+    <div class="container mx-auto">
+      <PageSection title="The Route">
+        <ContentRenderer class="text-lg" :value="route">
+          <template #empty></template>
+        </ContentRenderer>
+        <iframe 
+          :src="`https://ridewithgps.com/embeds?type=route&id=${route.rwgps}&metricUnits=true`"
+          style="width: 1px; min-width: 100%; height: 750px; border: none;" scrolling="no"></iframe>
+      </PageSection>
+    </div>
+  </ContentDoc>
 </template>
-
-<script setup>
-  const route = useRoute()
-  const routeData = await useRoutes().get(route.params.id)
-</script>

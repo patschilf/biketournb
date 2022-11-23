@@ -13,11 +13,13 @@
       </div>
     </div>
   </div>
-  <PageSection :title="'Recently added'">
-    <div class="grid grid-cols-3 gap-6">
-      <Teaser v-for="route in routes" :key="route.id" class="aspect-4/3" :route="route" />
-    </div>
-  </PageSection>
+  <ContentQuery path="/routes" :limit="3" v-slot="{ data: routes }">
+    <PageSection :title="'Recently added'">
+      <div class="grid grid-cols-3 gap-6">
+        <Teaser v-for="route in routes" :key="route._path" class="aspect-4/3" :route="route" :url="route._path" />
+      </div>
+    </PageSection>
+  </ContentQuery>
   <PageSection :title="'Stay tuned'">
     <Placeholder class="w-full mb-40 aspect-3/1" :label="'Newsletter Signup Form'" />
   </PageSection>
@@ -30,7 +32,3 @@
     <Placeholder class="aspect-4/3" :label="'Image 6'" />
   </section>
 </template>
-
-<script setup lang="ts">
-  const routes = await useRoutes().all()
-</script>

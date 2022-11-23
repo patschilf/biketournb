@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-end bg-gray-300">
     <div class="w-full text-white bg-gradient-to-b from-transparent to-black p-4 pt-16">
-      <NuxtLink to="`/routes/nb-${route.id}`" class="hover:text-yellow">
+      <NuxtLink :to="url" class="hover:text-yellow">
         <h3 class="text-xl font-bold">{{ route.title }}</h3>
       </NuxtLink>
       <div class="flex flex-row justify-between">
