@@ -1,19 +1,20 @@
 <template>
-  <div class="flex items-end bg-gray-300">
-    <div class="w-full text-white bg-gradient-to-b from-transparent to-black p-4 pt-16">
-      <NuxtLink :to="url" class="hover:text-yellow">
-        <h3 class="text-xl font-bold">{{ route.title }}</h3>
-      </NuxtLink>
+  <div class="group flex items-end bg-gray-300">
+    <NuxtLink :to="url" class="w-full text-white group-hover:text-black bg-gradient-to-b from-transparent to-black group-hover:to-yellow p-4 pt-16 group-hover:pt-4 group-hover:h-full flex flex-col">
+      <h3 class="text-xl font-bold hover:text-red">{{ route.title }}</h3>
+      <div class="hidden group-hover:block flex-grow">
+        <slot />
+      </div>
       <div class="flex flex-row justify-between">
         <span>{{ route.location }}</span>
         <span>{{ route.distance }}</span>
         <span>{{ route.duration }}</span>
         <span>{{ route.elevation }}</span>
       </div>
-    </div>
+    </NuxtLink>
   </div>
 </template>
 
 <script setup lang="ts">
-  const props = defineProps(["route"])
+  const props = defineProps(["route", "url"])
 </script>
