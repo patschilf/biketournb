@@ -1,7 +1,7 @@
 ---
 title: Saint John River Valley
 rwgps: 38794842
-location: New Brunswick
+location: 3
 distance: 462.3km
 duration: 21h
 elevation: 3,528m
