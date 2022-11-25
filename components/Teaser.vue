@@ -6,9 +6,7 @@
         <slot />
       </div>
       <div class="flex flex-row justify-between">
-        <ContentQuery :path="`/locations/${route.location}`" onle="label" find="one" v-slot="{ data: location }">
-          <span>{{ location.label }}</span>
-        </ContentQuery>
+        <span>{{ route.location.label }}</span>
         <span>{{ route.distance }}</span>
         <span>{{ route.duration }}</span>
         <span>{{ route.elevation }}</span>
