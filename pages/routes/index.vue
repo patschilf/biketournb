@@ -3,10 +3,10 @@
   <div class="container mx-auto my-40">
     <form class="text-lg py-8">
       <div class="flex flex-row gap-4">
-        <div class="flex-grow">
-          <label class="block px-4 mb-4 font-bold text-gray-600" for="select-location">Location</label>
+        <div class="flex-auto">
+          <label class="block px-4 mb-4 font-bold text-gray-600" for="filter-location">Location</label>
           <div class="block relative">
-            <select id="select-location" name="location" :disabled="!locations" class="block w-full appearance-none border py-3 px-4 pr-8 rounded leading-tight" v-model="location" @change.prevent="selectLocationHandler">
+            <select id="filter-location" name="location" :disabled="!locations" class="block w-full appearance-none border py-3 px-4 pr-8 rounded leading-tight" v-model="location" @change.prevent="refresh()">
               <option value="">Anywhere</option>
               <option v-for="location of locations" :value="location.id">{{ location.label }}</option>
             </select>
@@ -16,29 +16,32 @@
           </div>
         </div>
         <div class="flex-initial w-1/4 min-w-60">
-          <label class="block px-4 mb-4 font-bold text-gray-600" for="select-location">Max. Distance: {{ distance }}km</label>
+          <label v-if="distance < maxDistance" class="block px-4 mb-4 font-bold text-gray-600" for="filter-distance">Max. Distance: {{ distance }}km</label>
+          <label v-else class="block px-4 mb-4 font-bold text-gray-600" for="filter-distance">Distance: any</label>
           <div class="block relative">
             <div class="flex items-center bg-gray-200 px-4 py-3">
-              <input class="w-full" type="range" min="20" max="120" step="10" @change.prevent="setDistanceHandler" v-model="distance" />
+              <input id="filter-distance" name="distance" class="w-full" type="range" :min="minDistance" :max="maxDistance" step="10" @change.prevent="refresh()" v-model="distance" />
             </div>
           </div>
         </div>
         <div class="flex-initial w-1/4 min-w-60">
-          <label class="block px-4 mb-4 font-bold text-gray-600" for="filter-elevation">Elevation: {{ elevation }}m</label>
+          <label v-if="elevation < maxElevation" class="block px-4 mb-4 font-bold text-gray-600" for="filter-elevation">Max. Elevation: {{ elevation }}m</label>
+          <label v-else class="block px-4 mb-4 font-bold text-gray-600" for="filter-elevation">Elevation: any</label>
           <div class="block relative">
             <div class="flex items-center bg-gray-200 px-4 py-3">
-              <input id="filter-elevation" name="elevation" class="w-full" type="range" min="100" max="1000" step="100" @change="setElevationHandler" v-model="elevation" />
+              <input id="filter-elevation" name="elevation" class="w-full" type="range" :min="minElevation" :max="maxElevation" step="100" @change="refresh()" v-model="elevation" />
             </div>
           </div>
         </div>        
       </div>
     </form>
     <div class="grid grid-cols-3 gap-6">
-      <Teaser class="aspect-4/3" v-for="route of routes" :key="route._path" :route="route" :url="route._path">
+      <Teaser class="aspect-4/3" v-if="routes?.length" v-for="route of routes" :key="route._path" :route="route" :url="route._path">
         <ContentRenderer :value="route" :excerpt="true">
           <template #empty></template>
         </ContentRenderer>
       </Teaser>
+      <span v-else class="text-lg">No routes found.</span>
     </div>
   </div>
 </template>
@@ -47,17 +50,25 @@
   import { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types';
   
   const location = ref("")
-  const distance = ref(40)
-  const elevation = ref(200)
+  const minDistance = ref(20)
+  const maxDistance = ref(120)
+  const distance = ref(120)
+  const minElevation = ref(100)
+  const maxElevation = ref(1000)
+  const elevation = ref(1000)
 
   const { data: locations } = await useAsyncData('locations', () => queryContent('/locations').find())
   const { data: routes, refresh } = await useAsyncData('routes', () => {
     const query = queryContent('/routes')
-    
-    const where: QueryBuilderWhere = {
-      distance: { $lte: distance.value },
-      elevation: { $lte: elevation.value }
+    const where: QueryBuilderWhere = {}
+    if (distance.value < maxDistance.value) {
+      where.distance = { $lte: distance.value }
     }
+
+    if (elevation.value < maxElevation.value) {
+      where.elevation = { $lte: elevation.value }
+    }
+
     if (location.value) {
       where.location = location.value
     }
@@ -70,16 +81,4 @@
       location: locations.value?.find(location => location.id === route.location)
     }))
   })
-
-  const selectLocationHandler = () => {
-    refresh()
-  }
-
-  const setDistanceHandler = () => {
-    refresh()
-  }
-
-  const setElevationHandler = () => {
-    refresh()
-  }
 </script>
