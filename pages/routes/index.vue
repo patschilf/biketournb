@@ -10,24 +10,22 @@
           :options="locations"
           empty="Anywhere"
           @change="refresh()"/>
-        <div class="flex-initial w-1/4 min-w-60">
-          <label v-if="distance < maxDistance" class="block px-4 mb-4 font-bold text-gray-600" for="filter-distance">Max. Distance: {{ distance }}km</label>
-          <label v-else class="block px-4 mb-4 font-bold text-gray-600" for="filter-distance">Distance: any</label>
-          <div class="block relative">
-            <div class="flex items-center bg-gray-200 px-4 py-3">
-              <input id="filter-distance" name="distance" class="w-full" type="range" :min="minDistance" :max="maxDistance" step="10" @change.prevent="refresh()" v-model="distance" />
-            </div>
-          </div>
-        </div>
-        <div class="flex-initial w-1/4 min-w-60">
-          <label v-if="elevation < maxElevation" class="block px-4 mb-4 font-bold text-gray-600" for="filter-elevation">Max. Elevation: {{ elevation }}m</label>
-          <label v-else class="block px-4 mb-4 font-bold text-gray-600" for="filter-elevation">Elevation: any</label>
-          <div class="block relative">
-            <div class="flex items-center bg-gray-200 px-4 py-3">
-              <input id="filter-elevation" name="elevation" class="w-full" type="range" :min="minElevation" :max="maxElevation" step="100" @change="refresh()" v-model="elevation" />
-            </div>
-          </div>
-        </div>        
+        <FormFilterRange class="flex-initial w-1/4 min-w-60"
+          name="distance"
+          :label="distance < maxDistance ? `Distance: ${distance}km` : 'Distance: any'"
+          v-model="distance"
+          :min="minDistance"
+          :max="maxDistance"
+          step="10"
+          @change="refresh()" />
+        <FormFilterRange class="flex-initial w-1/4 min-w-60"
+          name="elevation"
+          :label="elevation < maxElevation ? `Elevation: ${elevation}m` : 'Elevation: any'"
+          v-model="elevation"
+          :min="minElevation"
+          :max="maxElevation"
+          step="100"
+          @change="refresh()" />        
       </div>
     </form>
     <div class="grid grid-cols-3 gap-6">
