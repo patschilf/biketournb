@@ -2,7 +2,7 @@
 title: Saint John River Valley
 rwgps: 38794842
 location: 3
-distance: 462.3km
+distance: 462.3
 duration: 21h
 elevation: 3,528m
 ---
