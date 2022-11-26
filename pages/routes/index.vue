@@ -3,18 +3,13 @@
   <div class="container mx-auto my-40">
     <form class="text-lg py-8">
       <div class="flex flex-row gap-4">
-        <div class="flex-auto">
-          <label class="block px-4 mb-4 font-bold text-gray-600" for="filter-location">Location</label>
-          <div class="block relative">
-            <select id="filter-location" name="location" :disabled="!locations" class="block w-full appearance-none border py-3 px-4 pr-8 rounded leading-tight" v-model="location" @change.prevent="refresh()">
-              <option value="">Anywhere</option>
-              <option v-for="location of locations" :value="location.id">{{ location.label }}</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 flex right-0 items-center px-2">
-              <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
-          </div>
-        </div>
+        <FormFilterSelect class="flex-auto"
+          name="location"
+          label="Location"
+          v-model="location"
+          :options="locations"
+          empty="Anywhere"
+          @change="refresh()"/>
         <div class="flex-initial w-1/4 min-w-60">
           <label v-if="distance < maxDistance" class="block px-4 mb-4 font-bold text-gray-600" for="filter-distance">Max. Distance: {{ distance }}km</label>
           <label v-else class="block px-4 mb-4 font-bold text-gray-600" for="filter-distance">Distance: any</label>
@@ -57,8 +52,19 @@
   const maxElevation = ref(1000)
   const elevation = ref(1000)
 
-  const { data: locations } = await useAsyncData('locations', () => queryContent('/locations').find())
-  const { data: routes, refresh } = await useAsyncData('routes', () => {
+  interface Location {
+    value: number
+    label: string
+  }
+
+  const { data: locations } = await useAsyncData('locations', () => queryContent('/locations').find(), {
+    transform: (locations) => locations.map<Location>(location => ({
+      value: Number(location.id),
+      label: location.label,
+    }))
+  })
+
+  const { data: routes, refresh } = await useAsyncData('routes', async () => {
     const query = queryContent('/routes')
     const where: QueryBuilderWhere = {}
     if (distance.value < maxDistance.value) {
@@ -70,7 +76,7 @@
     }
 
     if (location.value) {
-      where.location = location.value
+      where.location = Number(location.value)
     }
     query.where(where)
 
@@ -78,7 +84,7 @@
   }, {
     transform: (routes) => routes.map(route => ({
       ...route,
-      location: locations.value?.find(location => location.id === route.location)
+      location: locations.value?.find(location => location.value === route.location)
     }))
   })
 </script>
