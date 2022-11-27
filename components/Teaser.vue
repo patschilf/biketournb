@@ -7,9 +7,9 @@
       </div>
       <div class="flex flex-row justify-between">
         <span>{{ route.location.label }}</span>
-        <span>{{ route.distance }}</span>
+        <span>{{ route.distance }}km</span>
         <span>{{ route.duration }}</span>
-        <span>{{ route.elevation }}</span>
+        <span>{{ route.elevation }}m</span>
       </div>
     </NuxtLink>
   </div>

@@ -7,12 +7,12 @@
           name="location"
           label="Location"
           v-model="location"
-          :options="locations"
+          :options="locations.map(({id, label}) => ({value: id, label}))"
           empty="Anywhere"
-          @change="refresh()"/>
+          @change="refresh()" />
         <FormFilterRange class="flex-initial w-1/4 min-w-60"
           name="distance"
-          :label="distance < maxDistance ? `Distance: ${distance}km` : 'Distance: any'"
+          :label="distanceLabel"
           v-model="distance"
           :min="minDistance"
           :max="maxDistance"
@@ -20,7 +20,7 @@
           @change="refresh()" />
         <FormFilterRange class="flex-initial w-1/4 min-w-60"
           name="elevation"
-          :label="elevation < maxElevation ? `Elevation: ${elevation}m` : 'Elevation: any'"
+          :label="elevationLabel"
           v-model="elevation"
           :min="minElevation"
           :max="maxElevation"
@@ -29,7 +29,7 @@
       </div>
     </form>
     <div class="grid grid-cols-3 gap-6">
-      <Teaser class="aspect-4/3" v-if="routes?.length" v-for="route of routes" :key="route._path" :route="route" :url="route._path">
+      <Teaser class="aspect-4/3" v-if="routes.length" v-for="route of routes" :key="route._path" :route="route" :url="route._path">
         <ContentRenderer :value="route" :excerpt="true">
           <template #empty></template>
         </ContentRenderer>
@@ -40,49 +40,38 @@
 </template>
 
 <script setup lang="ts">
-  import { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types';
-  
+import { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types';
+import { useAsyncLocations } from '~~/composables/useLocationContent';
+import { useAsyncRoutes } from '~~/composables/useRouteContent';
+
   const location = ref("")
-  const minDistance = ref(20)
-  const maxDistance = ref(120)
+  
+  const minDistance = 20
+  const maxDistance = 120
   const distance = ref(120)
-  const minElevation = ref(100)
-  const maxElevation = ref(1000)
+  const distanceLabel = computed(() => distance.value < maxDistance
+    ? `Max. Distance: ${distance.value}km`
+    : 'Distance: any')
+
+  const minElevation = 100
+  const maxElevation = 1000
   const elevation = ref(1000)
+  const elevationLabel = computed(() => elevation.value < maxElevation
+    ? `Max. Elevation: ${elevation.value}m`
+    : 'Elevation: any')
 
-  interface Location {
-    value: number
-    label: string
-  }
-
-  const { data: locations } = await useAsyncData('locations', () => queryContent('/locations').find(), {
-    transform: (locations) => locations.map<Location>(location => ({
-      value: Number(location.id),
-      label: location.label,
-    }))
-  })
-
-  const { data: routes, refresh } = await useAsyncData('routes', async () => {
-    const query = queryContent('/routes')
-    const where: QueryBuilderWhere = {}
-    if (distance.value < maxDistance.value) {
-      where.distance = { $lte: distance.value }
-    }
-
-    if (elevation.value < maxElevation.value) {
-      where.elevation = { $lte: elevation.value }
-    }
-
+  const { locations } = await useAsyncLocations()
+  const { routes, refresh } = await useAsyncRoutes(locations.value, computed(() => {
+    const filter: QueryBuilderWhere = {}
     if (location.value) {
-      where.location = Number(location.value)
+      filter.location = Number(location.value)
     }
-    query.where(where)
-
-    return query.find()
-  }, {
-    transform: (routes) => routes.map(route => ({
-      ...route,
-      location: locations.value?.find(location => location.value === route.location)
-    }))
-  })
+    if (distance.value < maxDistance) {
+      filter.distance = { $lte: Number(distance.value)}
+    }
+    if (elevation.value < maxElevation) {
+      filter.elevation = { $lte: Number(elevation.value)}
+    }
+    return filter
+  }))
 </script>
