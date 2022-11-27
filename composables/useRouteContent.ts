@@ -10,17 +10,20 @@ export interface Route extends ParsedContent {
   elevation: number
 }
 
-export const queryRoutes = (where?: QueryBuilderWhere) => {
+export const queryRoutes = (where?: QueryBuilderWhere, limit?: number) => {
   const query = queryContent('/routes')
   if (where) {
     query.where(where)
   }
+  if (limit) {
+    query.limit(limit)
+  }
   return query.find()
 }
 
-export const useAsyncRoutes = async (locations: Location[], where: Ref<QueryBuilderWhere>) => {
+export const useAsyncRoutes = async (locations: Location[], where?: Ref<QueryBuilderWhere>, limit?: number) => {
   const { data: routes, refresh } = await useAsyncData('routes',
-    () => queryRoutes(where.value), {
+    () => queryRoutes(where?.value, limit), {
     transform: (routes) => {
       if (locations.length) {
         routes = routes.map(route => {
