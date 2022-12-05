@@ -2,14 +2,21 @@
   <div class="flex flex-col h-full">
     <header class="flex-none">
       <div class="bg-yellow p-4">
-        <div class="container mx-auto flex flex-row justify-between text-lg">
-          <div>
-            <NuxtLink to="/"><img src="/img/btnb_logo.png" alt="BikeTourNB Logo" /></NuxtLink>
+        <div class="container mx-auto flex flex-col md:flex-row justify-between text-lg">
+          <div class="flex flex-row justify-between">
+            <NuxtLink to="/">
+              <nuxt-img src="/img/btnb_logo.png" alt="BikeTourNB Logo" sizes="xs:180px sm:240px" />
+            </NuxtLink>
+            <div class="md:hidden cursor-pointer" @click="collapsed = !collapsed">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </div>
           </div>
-          <nav class="flex items-center space-x-6">
-            <NuxtLink to="/routes">Routes</NuxtLink>
-            <NuxtLink to="/about">About</NuxtLink>
-            <NuxtLink to="/contact">Contact</NuxtLink>
+          <nav class="md:flex flex flex-col md:flex-row md:items-center md:space-x-6" :class="collapsed ? 'hidden' : ''">
+            <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/routes">Routes</NuxtLink>
+            <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/about">About</NuxtLink>
+            <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/contact">Contact</NuxtLink>
           </nav>
         </div>
       </div>
@@ -29,3 +36,7 @@
     </footer>
   </div>
 </template>
+
+<script setup lang="ts">
+  const collapsed = ref(true)
+</script>
