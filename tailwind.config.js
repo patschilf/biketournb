@@ -12,6 +12,8 @@ module.exports = {
       colors: {
         yellow: "#ffc900",
         red: "#da1500",
+        "light-grey": "#e9e9ed",
+        "dark-grey": "#4b5563",
       },
       fontSize: {
         base: ['1rem', "1.5rem"],
