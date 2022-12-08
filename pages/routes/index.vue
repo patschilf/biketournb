@@ -2,7 +2,7 @@
   <PageHeader title="Routes" />
   <div class="container mx-auto my-40">
     <form class="text-lg py-8">
-      <div class="flex flex-row gap-4">
+      <div class="flex flex-col lg:flex-row gap-4">
         <FormFilterSelect class="flex-auto"
           name="location"
           label="Location"
@@ -10,22 +10,24 @@
           :options="locations.map(({id, label}) => ({value: id, label}))"
           empty="Anywhere"
           @change="refresh()" />
-        <FormFilterRange class="flex-initial w-1/4 min-w-60"
-          name="distance"
-          :label="distanceLabel"
-          v-model="distance"
-          :min="minDistance"
-          :max="maxDistance"
-          step="10"
-          @change="refresh()" />
-        <FormFilterRange class="flex-initial w-1/4 min-w-60"
-          name="elevation"
-          :label="elevationLabel"
-          v-model="elevation"
-          :min="minElevation"
-          :max="maxElevation"
-          step="100"
-          @change="refresh()" />        
+        <div class="flex flex-col sm:flex-row flex-initial gap-4">
+          <FormFilterRange class="w-full sm:w-1/2 min-w-60"
+            name="distance"
+            :label="distanceLabel"
+            v-model="distance"
+            :min="minDistance"
+            :max="maxDistance"
+            step="10"
+            @change="refresh()" />
+          <FormFilterRange class="w-full sm:w-1/2 min-w-60"
+            name="elevation"
+            :label="elevationLabel"
+            v-model="elevation"
+            :min="minElevation"
+            :max="maxElevation"
+            step="100"
+            @change="refresh()" />
+        </div>
       </div>
     </form>
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
