@@ -1,5 +1,3 @@
-# Disclaimer
-
 ## Interpretation and Definitions
 
 ### Interpretation
@@ -11,11 +9,10 @@ The following definitions shall have the same meaning regardless of whether they
 ### Definitions
 
 For the purposes of this Disclaimer:
-
-    - **Company** (referred to as either “the Company”, “We”, “Us” or “Our” in this Disclaimer) refers to BikeTourNB.
-    - **Service** refers to the Website.
-    - **You** means the individual accessing the Service, or the company, or other legal entity on behalf of which individual is accessing or using the Service, as applicable.
-    - **Website** refers to BikeTourNB, accessible from https://biketournb.ca
+- **Company** (referred to as either “the Company”, “We”, “Us” or “Our” in this Disclaimer) refers to BikeTourNB.
+- **Service** refers to the Website.
+- **You** means the individual accessing the Service, or the company, or other legal entity on behalf of which individual is accessing or using the Service, as applicable.
+- **Website** refers to BikeTourNB, accessible from [https://biketournb.ca](/)
 
 ## Disclaimer
 
@@ -66,6 +63,6 @@ All information in the Service is provided “as is”, with no guarantee of com
 The Company will not be liable to You or anyone else for any decision made or action taken in reliance on the information given by the Service or for any consequential, special or similar damages, even if advised of the possibility of such damages.
 Contact Us
 
-If you have any questions about this Disclaimer, You can contact by using the contact form on our website.
+If you have any questions about this Disclaimer, you can contact by using the [contact form](/contact) on our website.
 
 Last updated: May 04, 2021
