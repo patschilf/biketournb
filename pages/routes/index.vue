@@ -8,8 +8,7 @@
           label="Location"
           v-model="location"
           :options="locations.map(({id, label}) => ({value: id, label}))"
-          empty="Anywhere"
-          @change="refresh()" />
+          empty="Anywhere" />
         <div class="flex flex-col sm:flex-row flex-initial gap-4">
           <FormFilterRange class="w-full sm:w-1/2 min-w-60"
             name="distance"
@@ -17,37 +16,31 @@
             v-model="distance"
             :min="minDistance"
             :max="maxDistance"
-            step="10"
-            @change="refresh()" />
+            step="10" />
           <FormFilterRange class="w-full sm:w-1/2 min-w-60"
             name="elevation"
             :label="elevationLabel"
             v-model="elevation"
             :min="minElevation"
             :max="maxElevation"
-            step="100"
-            @change="refresh()" />
+            step="100" />
         </div>
       </div>
     </form>
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-      <Teaser class="aspect-4/3" v-if="routes.length" v-for="route of routes" :key="route._path" :route="route" :url="route._path">
+      <Teaser class="aspect-4/3" v-for="route of routes" :key="route._path" :route="route" :url="route._path">
         <ContentRenderer :value="route" :excerpt="true">
           <template #empty></template>
         </ContentRenderer>
       </Teaser>
-      <span v-else class="text-lg">No routes found.</span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { QueryBuilderWhere } from '@nuxt/content/dist/runtime/types';
-import { useAsyncLocations } from '~~/composables/useLocationContent';
-import { useAsyncRoutes } from '~~/composables/useRouteContent';
-
   const location = ref("")
-  
+  const locations = await queryContent('locations').find()
+
   const minDistance = 20
   const maxDistance = 120
   const distance = ref(120)
@@ -62,18 +55,10 @@ import { useAsyncRoutes } from '~~/composables/useRouteContent';
     ? `Max. Elevation: ${elevation.value}m`
     : 'Elevation: any')
 
-  const { locations } = await useAsyncLocations()
-  const { routes, refresh } = await useAsyncRoutes(locations.value, computed(() => {
-    const filter: QueryBuilderWhere = {}
-    if (location.value) {
-      filter.location = Number(location.value)
-    }
-    if (distance.value < maxDistance) {
-      filter.distance = { $lte: Number(distance.value)}
-    }
-    if (elevation.value < maxElevation) {
-      filter.elevation = { $lte: Number(elevation.value)}
-    }
-    return filter
-  }))
+  const routeContent = await queryContent('routes').find()
+  const routes = computed(() => routeContent.filter(route => 
+    (location.value === "" || route.location == location.value) 
+      && (distance.value === maxDistance || route.distance <= distance.value )
+      && (elevation.value === maxElevation || route.elevation <= elevation.value)))
+    
 </script>
