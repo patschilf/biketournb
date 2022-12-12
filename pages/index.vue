@@ -15,11 +15,13 @@
   </div>
   <PageSection :title="'Recently added'">
     <div class="grid grid-cols-3 gap-6">
-      <Teaser v-for="route in routes" :key="route._path" class="aspect-4/3" :route="route" :url="route._path">
-        <ContentRenderer :value="route" :excerpt="true">
-          <template #empty></template>
-        </ContentRenderer>
-      </Teaser>
+      <ContentList path="/routes" limit="3" v-slot="{ list: routes }">
+        <Teaser v-for="route in routes" :key="route._path" class="aspect-4/3" :route="route" :url="route._path">
+          <ContentRenderer :value="route" :excerpt="true">
+            <template #empty></template>
+          </ContentRenderer>
+        </Teaser>
+      </ContentList>
     </div>
   </PageSection>
   <PageSection :title="'Stay tuned'">
@@ -34,11 +36,3 @@
     <Placeholder class="aspect-4/3" :label="'Image 6'" />
   </section>
 </template>
-
-<script setup lang="ts">
-  import { useAsyncLocations } from '~~/composables/useLocationContent';
-  import { useAsyncRoutes } from '~~/composables/useRouteContent';
-
-  const { locations } = await useAsyncLocations()
-  const { routes } = await useAsyncRoutes(locations.value, {}, 3)
-</script>
