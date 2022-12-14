@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '~/assets/css/main.css'
   ],
   image: {
+    provider: "ipx",
     screens: theme.screens,
   },
   modules: [
