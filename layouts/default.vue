@@ -5,7 +5,7 @@
         <div class="container mx-auto flex flex-col md:flex-row justify-between text-lg">
           <div class="flex flex-row justify-between">
             <NuxtLink to="/">
-              <nuxt-img src="/img/btnb_logo.png" alt="BikeTourNB Logo" sizes="xs:180px sm:240px" />
+              <nuxt-img src="/misc/biketournb_logo.png" alt="BikeTourNB Logo" sizes="xs:180px sm:240px" />
             </NuxtLink>
             <div class="md:hidden cursor-pointer" @click="collapsed = !collapsed">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">

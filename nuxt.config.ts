@@ -7,6 +7,7 @@ const ipxRoutes = (() => {
       .map((width: number) => `/_ipx/w_${width}${filename}`))
     .reduce((all: string[], routes: string[]) => all.concat(...routes), [])
 })()
+const { CLOUDINARY_PROJECT_ID } = process.env
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -14,8 +15,18 @@ export default defineNuxtConfig({
     '~/assets/css/main.css'
   ],
   image: {
-    provider: "ipx",
+    alias: {
+      'photos': '/biketournb/photos',
+      'misc': '/biketournb/misc',
+    },
+    domains: [
+      'res.cloudinary.com',
+    ],
+    provider: 'cloudinary',
     screens: theme.screens,
+    cloudinary: {
+      baseURL: `https://res.cloudinary.com/${CLOUDINARY_PROJECT_ID}/image/upload/`,
+    },
   },
   modules: [
     '@nuxt/content',
