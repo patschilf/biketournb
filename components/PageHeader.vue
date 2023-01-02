@@ -7,3 +7,10 @@
 <script setup lang="ts">
   const props = defineProps(['title'])
 </script>
+
+<style scoped>
+  header {
+    background-color: #da1500;
+    background-image: url("/svg/background-cogs.svg")
+  }
+</style>
