@@ -25,6 +25,9 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/image-edge',
   ],
+  nitro: {
+    preset: 'vercel',
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
