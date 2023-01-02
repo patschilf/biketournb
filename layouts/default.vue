@@ -26,7 +26,7 @@
     </main>
     <footer class="flex-none bg-gray-200 p-4">
       <div class="container mx-auto flex flex-row">
-        <img class="mr-6 h-8" src="/img/btnb_logo_bw.png" alt="BikeTourNB Logo" />
+        <nuxt-img class="mr-6 h-8" src="/misc/biketournb_logo_bw.png" alt="BikeTourNB Logo" sizes="xs:120px sm:160px" />
         <nav class="flex items-center space-x-6">
           <NuxtLink to="/copyright">Copyright</NuxtLink>
           <NuxtLink to="/disclaimer">Disclaimer</NuxtLink>
