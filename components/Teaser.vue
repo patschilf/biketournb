@@ -19,4 +19,20 @@
 
 <script setup lang="ts">
   const props = defineProps(["route", "url"])
+  
+  const $img = useImage()
+  const backgroundImageWidth = ref()
+  const style = computed(() => {
+    return (props.route.images?.featured && backgroundImageWidth.value) ? {
+      backgroundImage: `url('${$img(props.route.images.featured, {
+        width: backgroundImageWidth.value,
+      })}')`
+    } : {}
+  })
+  
+  onMounted(() => {
+    const screen = useScreen()
+    const imageWidth = useImageMatch(screen)
+    backgroundImageWidth.value = imageWidth
+  })
 </script>
