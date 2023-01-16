@@ -38,8 +38,9 @@
 </template>
 
 <script setup lang="ts">
+  const routeContent = await queryRoutes()
+  const locations = unique(routeContent.map(route => route.location))
   const location = ref("")
-  const locations = await queryContent('locations').find()
 
   const minDistance = 20
   const maxDistance = 120
@@ -55,7 +56,6 @@
     ? `Max. Elevation: ${elevation.value}m`
     : 'Elevation: any')
 
-  const routeContent = await queryRoutes()
   const routes = computed(() => routeContent.filter(route => 
     (location.value === "" || route.location.id == location.value) 
       && (distance.value === maxDistance || route.distance <= distance.value )
