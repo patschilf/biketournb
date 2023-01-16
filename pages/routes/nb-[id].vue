@@ -12,7 +12,7 @@
       </PageSection>
       <PageSection v-if="route.images" title="Sneak Peak">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <nuxt-img v-for="(image, index) in route.images" class="hover:cursor-pointer"
+          <nuxt-img v-for="(image, index) in route.images.gallery" class="hover:cursor-pointer"
             :src="image" 
             loading="lazy" 
             sizes="xs:320px sm:640px md:384px lg:324px xl:427px 2xl:512px" 
@@ -21,7 +21,7 @@
             <nuxt-img 
               class="mb-4 aspect-4/3 h-full" 
               sizes="xs:320px sm:640px md:768px lg:1024px xl:1280px" 
-              :src="route.images.at(gallery.index)" />
+              :src="route.images.gallery.at(gallery.index)" />
             <div class="static">
               <button class="absolute -left-6 top-1/2 p-4 bg-white rounded-full" @click.prevent="gallery.index = --gallery.index % route.images.length">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
