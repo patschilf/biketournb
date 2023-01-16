@@ -55,9 +55,9 @@
     ? `Max. Elevation: ${elevation.value}m`
     : 'Elevation: any')
 
-  const routeContent = await queryContent('routes').find()
+  const routeContent = await queryRoutes()
   const routes = computed(() => routeContent.filter(route => 
-    (location.value === "" || route.location == location.value) 
+    (location.value === "" || route.location.id == location.value) 
       && (distance.value === maxDistance || route.distance <= distance.value )
       && (elevation.value === maxElevation || route.elevation <= elevation.value)))
     
