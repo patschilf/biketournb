@@ -4,3 +4,12 @@ location: 3
 distance: 105.4
 duration: 5h
 elevation: 1176
+images:
+  featured: /photos/20200815160939-gagetown-welcome-sign.jpg
+  gallery:
+    - /photos/20200815152857-jemseg-saint-james-anglican-church.jpg
+    - /photos/20200815160441-gagetown-farm.jpg
+    - /photos/20200815160939-gagetown-welcome-sign.jpg
+    - /photos/20200815170710-gagetown-distillery-sign.jpg
+    - /photos/20200816121931-route-102-queens-county-new-brunswick.jpg
+    - /photos/20200816115307-queenstown-new-brunswick-public-campsite.jpg

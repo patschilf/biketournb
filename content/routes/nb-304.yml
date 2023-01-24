@@ -4,3 +4,9 @@ location: 3
 distance: 16.5
 duration: 1h
 elevation: 144
+images:
+  featured: /photos/20210513201938-knowledge-park-trail-sunset-fredericton.jpg
+  gallery:
+    - /photos/20210513195421-trail-botanical-gardens-odell-park-fredericton.jpg
+    - /photos/20210513202217-knowledge-park-trail-fredericton.jpg
+    - /photos/20210513201938-knowledge-park-trail-sunset-fredericton.jpg
