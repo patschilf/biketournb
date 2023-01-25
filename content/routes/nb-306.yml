@@ -4,3 +4,9 @@ location: 3
 distance: 44.1
 duration: 3h
 elevation: 302
+images:
+  featured: /photos/20210529144639-saint-john-river-panorama.jpg
+  gallery:
+    - /photos/20210529140948-biker-road-blue-sky.jpg
+    - /photos/20210529144639-saint-john-river-panorama.jpg
+    - /photos/20201010173532-trail-fall-picnic-shelter.jpg
