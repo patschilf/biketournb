@@ -1,6 +1,6 @@
 <template>
   <div class="h-36 bg-red z-10"></div>
-  <Placeholder class="container mx-auto aspect-7/5 -mt-12" label="Map" />
+  <LeafletMap class="container mx-auto w-full h-screen -mt-12" :view="[46.5, -66.0]" :zoom="8" :max-zoom="18" />
   <PageSection :title="'Recently added'">
     <div class="grid grid-cols-3 gap-6">
       <Teaser v-for="route in routes" :key="route._path" class="aspect-4/3" :route="route" :url="route._path">
