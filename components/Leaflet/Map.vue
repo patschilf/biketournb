@@ -44,3 +44,9 @@
     }).addTo(map))
   })
 </script>
+
+<style>
+.leaflet-interactive:hover {
+  stroke-width: 5;
+}
+</style>
