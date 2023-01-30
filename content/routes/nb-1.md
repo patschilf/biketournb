@@ -5,6 +5,7 @@ location: 3
 distance: 462.3
 duration: 21h
 elevation: 3528
+track: '/gpx/nb-1.gpx'
 images:
   featured: /photos/20210715155354-biker-trail-saint-john-river-view.jpg
   gallery:

@@ -4,6 +4,7 @@ location: 3
 distance: 16.5
 duration: 1h
 elevation: 144
+track: '/gpx/nb-304.gpx'
 images:
   featured: /photos/20210513201938-knowledge-park-trail-sunset-fredericton.jpg
   gallery:

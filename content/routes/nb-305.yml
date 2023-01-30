@@ -4,6 +4,7 @@ location: 3
 distance: 14.7
 duration: 1h
 elevation: 81
+track: '/gpx/nb-305.gpx'
 images:
   featured: /photos/20210610203909-bike-handrail-nahswaak-river-bridge.jpg
   gallery:

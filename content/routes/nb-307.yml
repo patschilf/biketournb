@@ -4,6 +4,7 @@ location: 3
 distance: 105.4
 duration: 5h
 elevation: 1176
+track: '/gpx/nb-307.gpx'
 images:
   featured: /photos/20200815160939-gagetown-welcome-sign.jpg
   gallery:

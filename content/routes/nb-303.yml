@@ -4,6 +4,7 @@ location: 3
 distance: 9.1
 duration: 1h
 elevation: 64
+track: '/gpx/nb-303.gpx'
 images:
   featured: /photos/20210518200327-marysville-station-closeup.jpg
   gallery:
