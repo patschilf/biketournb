@@ -3,11 +3,15 @@
 </template>
 
 <script setup lang="ts">
+  type Point = [number, number] 
+
   const props = defineProps<{
     zoom: number
     maxZoom: number
-    view: [number, number]
+    view: Point
+    markers: Point[]
   }>()
+
   useHead({
     link: [{
       rel: "stylesheet",
@@ -24,6 +28,7 @@
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: props.maxZoom,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    }).addTo(map)
+    props.markers.forEach(marker => L.marker(marker).addTo(map))
   })
 </script>
