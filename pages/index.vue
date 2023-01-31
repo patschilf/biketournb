@@ -4,9 +4,7 @@
     :view="[46.5, -66.0]" 
     :zoom="8" 
     :max-zoom="18"
-    :markers="[
-      [46.5, -66.0]
-    ]"
+    :markers="[]"
     :tracks="tracks"
   />
   <PageSection :title="'Recently added'">
