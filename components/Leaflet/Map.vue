@@ -46,6 +46,23 @@
 </script>
 
 <style>
+  .leaflet-interactive:nth-child(5n+1) {
+    @apply stroke-emerald-700
+  }
+  .leaflet-interactive:nth-child(5n+2) {
+    @apply stroke-orange-500
+  }
+  .leaflet-interactive:nth-child(5n+3) {
+    @apply stroke-stone-400
+  }
+  .leaflet-interactive:nth-child(5n+4) {
+    @apply stroke-sky-500
+  }
+  .leaflet-interactive:nth-child(5n+5) {
+    @apply stroke-rose-500
+  }
+  
+
 .leaflet-interactive:hover {
   stroke-width: 5;
 }
