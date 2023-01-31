@@ -26,11 +26,12 @@
     // @ts-ignore
     const L = await import("leaflet-gpx")
     const map = L.map('map').setView(props.view, props.zoom)
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: props.maxZoom,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      maxZoom: 20
     }).addTo(map)
-    
+
     // add markers
     props.markers.forEach(marker => L.marker(marker).addTo(map))
 
@@ -63,7 +64,7 @@
   }
   
 
-.leaflet-interactive:hover {
-  stroke-width: 5;
-}
+  .leaflet-interactive:hover {
+    stroke-width: 5;
+  }
 </style>
