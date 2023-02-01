@@ -25,11 +25,17 @@
   onMounted(async () => {
     // @ts-ignore
     const L = await import("leaflet-gpx")
-    const map = L.map('map').setView(props.view, props.zoom)
+    const map = L.map('map', {
+      maxBounds: [
+        [48.041, -69.252],
+        [44.813, -63.7814],
+      ],
+      maxZoom: 17,
+      minZoom: 8,
+    }).setView(props.view, props.zoom)
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      maxZoom: 20
     }).addTo(map)
 
     // add markers
