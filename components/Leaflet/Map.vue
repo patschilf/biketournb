@@ -3,6 +3,8 @@
 </template>
 
 <script setup lang="ts">
+  import { ParsedContent } from '@nuxt/content/dist/runtime/types';
+
   type Point = [number, number] 
 
   const props = defineProps<{
@@ -10,7 +12,7 @@
     maxZoom: number
     view: Point
     markers: Point[],
-    tracks: string[],
+    routes: ParsedContent[],
   }>()
 
   useHead({
@@ -42,12 +44,17 @@
     props.markers.forEach(marker => L.marker(marker).addTo(map))
 
     // add tracks
-    props.tracks.forEach(track => new L.GPX(track, {
+    props.routes.forEach(route => new L.GPX(route.track, {
       async: true,
       marker_options: {
         startIconUrl: "",
         endIconUrl: "",
       },
+    }).on('click', (e: any) => {
+      const latlng = Object.values(e.latlng)
+      L.popup(latlng, {
+        content: `<div><a href="${route._path}">${route.title}</a>`,
+      }).openOn(map);
     }).addTo(map))
   })
 </script>

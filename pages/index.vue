@@ -5,7 +5,7 @@
     :zoom="8" 
     :max-zoom="18"
     :markers="[]"
-    :tracks="tracks"
+    :routes="routes"
   />
   <PageSection :title="'Recently added'">
     <div class="grid grid-cols-3 gap-6">
@@ -21,5 +21,4 @@
 <script setup lang="ts">
   const routes = await queryRoutes()
   const recent = computed(() => routes.slice(0, 3))
-  const tracks = computed(() => routes.map(route => route.track).filter(track => track !== null))
 </script>
