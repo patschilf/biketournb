@@ -29,9 +29,7 @@
     </form>
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       <Teaser class="aspect-4/3" v-for="route of routes" :key="route._path" :route="route" :url="route._path">
-        <ContentRenderer :value="route" :excerpt="true">
-          <template #empty></template>
-        </ContentRenderer>
+        <ContentRenderer :value="route" :excerpt="true" />
       </Teaser>
     </div>
   </div>
