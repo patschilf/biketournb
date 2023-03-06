@@ -16,7 +16,6 @@
           <nav class="md:flex flex flex-col md:flex-row md:items-center md:space-x-6" :class="collapsed ? 'hidden' : ''">
             <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/routes">Routes</NuxtLink>
             <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/about">About</NuxtLink>
-            <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/contact">Contact</NuxtLink>
           </nav>
         </div>
       </div>
