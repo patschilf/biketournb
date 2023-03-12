@@ -16,17 +16,26 @@
   }>()
 
   useHead({
-    link: [{
+    link: [
+      {
       rel: "stylesheet",
       href: "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css",
       integrity: "sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=",
       crossorigin: "",
-    }]
+      },
+      {
+        rel: "stylesheet",
+        href: "https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css",
+      }
+    ]
   })
   
   onMounted(async () => {
     // @ts-ignore
     const L = await import("leaflet-gpx")
+    const { GestureHandling } = await import("leaflet-gesture-handling");
+    L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling)
+
     const map = L.map('map', {
       maxBounds: [
         [48.041, -69.252],
@@ -34,6 +43,7 @@
       ],
       maxZoom: 17,
       minZoom: 8,
+      gestureHandling: true,
     }).setView(props.view, props.zoom)
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
