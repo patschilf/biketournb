@@ -7,18 +7,8 @@
     :markers="[]"
     :routes="routes"
   />
-  <PageSection :title="'Recently added'">
-    <div class="grid grid-cols-3 gap-6">
-      <Teaser v-for="route in recent" :key="route._path" class="aspect-4/3" :route="route" :url="route._path">
-        <ContentRenderer :value="route" :excerpt="true">
-          <template #empty></template>
-        </ContentRenderer>
-      </Teaser>
-    </div>
-  </PageSection>
 </template>
 
 <script setup lang="ts">
   const routes = await queryRoutes()
-  const recent = computed(() => routes.slice(0, 3))
 </script>
