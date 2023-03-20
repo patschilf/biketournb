@@ -4,7 +4,7 @@
       <div class="bg-yellow p-4">
         <div class="container mx-auto flex flex-col md:flex-row justify-between text-lg">
           <div class="flex flex-row justify-between">
-            <NuxtLink to="/">
+            <NuxtLink to="/" @click="collapsed = true">
               <nuxt-img src="/misc/biketournb_logo.png" alt="BikeTourNB Logo" sizes="xs:180px sm:240px" />
             </NuxtLink>
             <div class="md:hidden cursor-pointer" @click="collapsed = !collapsed">
@@ -14,8 +14,8 @@
             </div>
           </div>
           <nav class="md:flex flex flex-col md:flex-row md:items-center md:space-x-6" :class="collapsed ? 'hidden' : ''">
-            <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/routes">Routes</NuxtLink>
-            <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/about">About</NuxtLink>
+            <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/routes" @click="collapsed = true">Routes</NuxtLink>
+            <NuxtLink class="py-2 ml-2 md:py-0 md:ml-0" to="/about" @click="collapsed = true">About</NuxtLink>
           </nav>
         </div>
       </div>
