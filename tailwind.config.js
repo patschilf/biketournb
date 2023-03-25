@@ -22,6 +22,9 @@ module.exports = {
         "2xl": ["2.8rem", "3rem"],
         "3xl": ["3.5rem", "3.5rem"],
       },
+      minHeight: {
+        "1/2": "50%",
+      },
     },
     aspectRatio: {
       "4/3": "4/3",
