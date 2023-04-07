@@ -35,8 +35,9 @@ const style = computed(() => {
   return (props.image && backgroundImageWidth.value)
     ? {
         backgroundImage: `url('${$img(props.image, {
-        width: backgroundImageWidth.value,
-      })}')`,
+          width: backgroundImageWidth.value,
+        })}')`,
+        backgroundSize: `cover`,
       }
     : {}
 })
