@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-  const components = {
-    a: 'CustomProseA',
-  }
+const components = {
+  a: `CustomProseA`,
+}
 </script>

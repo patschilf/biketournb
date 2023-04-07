@@ -15,6 +15,11 @@
 </template>
 
 <script setup lang="ts">
-  defineProps(["route"])
+defineProps({
+  route: {
+    type: Object,
+    required: true,
+  },
+})
 
 </script>
