@@ -1,3 +1,8 @@
+export enum DIRECTION {
+  ONE_WAY = 1,
+  LOOP = 2,
+}
+
 export default async () => {
   const [routes, locations] = await Promise.all([
     queryContent(`routes`).find(),

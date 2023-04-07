@@ -1,5 +1,6 @@
 ---
 title: Saint John River Valley
+direction: 1
 rwgps: 38794842
 location: 3
 distance: 462.3
