@@ -4,17 +4,25 @@
       <ContentRenderer :value="route" :excerpt="true" />
     </template>
     <template #footer>
-      <div class="flex flex-row justify-between">
-        <span>{{ route.location.label }}</span>
-        <span>{{ route.distance }}km</span>
-        <span>{{ route.duration }}</span>
-        <span>{{ route.elevation }}m</span>
+      <div class="mt-2 flex flex-row justify-between">
+        <span>
+          <IconMapPin /><span class="ml-2">{{ route.location.label }}</span>
+        </span>
+        <span>
+          <IconArrowRight v-if="route.direction === DIRECTION.ONE_WAY" />
+          <IconArrowCircle v-if="route.direction === DIRECTION.LOOP" />
+          <span class="ml-2">{{ route.distance }}km</span></span>
+        <span>
+          <IconArrowTrendUp /><span class="ml-2">{{ route.elevation }}m</span>
+        </span>
       </div>
     </template>
   </Teaser>
 </template>
 
 <script setup lang="ts">
+import { DIRECTION } from '../../composables/queryRoutes'
+
 defineProps({
   route: {
     type: Object,
