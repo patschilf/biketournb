@@ -1,5 +1,5 @@
 <template>
-  <div class="h-6 bg-red z-10" />
+  <div class="z-10 h-6 bg-red" />
   <LeafletMap
     class="h-screen"
     :view="[46.5, -66.0]"

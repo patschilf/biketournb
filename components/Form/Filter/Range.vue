@@ -1,7 +1,7 @@
 <template>
   <div>
-    <label class="block px-4 mb-4 font-bold text-gray-600" :for="`filter-${name}`">{{ label }}</label>
-    <div class="block relative">
+    <label class="mb-4 block px-4 font-bold text-gray-600" :for="`filter-${name}`">{{ label }}</label>
+    <div class="relative block">
       <div class="flex items-center bg-gray-200 px-4 py-3">
         <input
           :id="`filter-${name}`"

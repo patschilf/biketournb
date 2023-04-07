@@ -1,8 +1,8 @@
 <template>
   <PageHeader title="Routes" />
   <div class="container mx-auto my-40">
-    <form class="text-lg py-8">
-      <div class="flex flex-col lg:flex-row gap-4">
+    <form class="py-8 text-lg">
+      <div class="flex flex-col gap-4 lg:flex-row">
         <FormFilterSelect
           v-model="location"
           class="flex-auto"
@@ -11,10 +11,10 @@
           :options="locations.map(({id, label}) => ({value: id, label}))"
           empty="Anywhere"
         />
-        <div class="flex flex-col sm:flex-row flex-initial gap-4">
+        <div class="flex flex-initial flex-col gap-4 sm:flex-row">
           <FormFilterRange
             v-model="distance"
-            class="w-full sm:w-1/2 min-w-60"
+            class="w-full sm:w-1/2"
             name="distance"
             :label="`Max. Distance: ${distance < maxDistance ? `${distance}km` : 'any'}`"
             :min="minDistance"
@@ -23,7 +23,7 @@
           />
           <FormFilterRange
             v-model="elevation"
-            class="w-full sm:w-1/2 min-w-60"
+            class="w-full sm:w-1/2"
             name="elevation"
             :label="`Max. Elevation: ${elevation < maxElevation ? `${elevation}m` : 'any'}`"
             :min="minElevation"
@@ -33,7 +33,7 @@
         </div>
       </div>
     </form>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
       <TeaserRoute v-for="route of routes.filter(routeFilter)" :key="route._path" class="aspect-4/3" :route="route" />
     </div>
   </div>

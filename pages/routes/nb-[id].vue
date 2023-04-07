@@ -13,7 +13,7 @@
         />
       </PageSection>
       <PageSection v-if="route.images" title="Sneak Peak">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <nuxt-img
             v-for="(image, index) in route.images.gallery"
             :key="`img-${index}`"
@@ -30,26 +30,26 @@
               :src="route.images.gallery.at(galleryIndex % route.images.gallery.length)"
             />
             <div class="static">
-              <button class="absolute -left-6 top-1/2 p-4 bg-white rounded-full" @click.prevent="--galleryIndex">
+              <button class="absolute -left-6 top-1/2 rounded-full bg-white p-4" @click.prevent="--galleryIndex">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6"
+                  class="h-6 w-6"
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
                 </svg>
               </button>
-              <button class="absolute -right-6 top-1/2 p-4 bg-white rounded-full" @click.prevent="++galleryIndex">
+              <button class="absolute -right-6 top-1/2 rounded-full bg-white p-4" @click.prevent="++galleryIndex">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6"
+                  class="h-6 w-6"
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                 </svg>
